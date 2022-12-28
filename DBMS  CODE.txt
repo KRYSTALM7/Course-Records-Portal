@@ -1,0 +1,91 @@
+#SOURCE CODE FOR ONLINE COURSE PORTAL
+print("****Online course portal****")
+#creating database
+import mysql.connector
+mydb=mysql.connector.connect(host="localhost",user="root",passwd="1234")
+mycursor=mydb.cursor()
+mycursor.execute("create database if not exists pyportal")
+mycursor.execute("use pyportal")
+#creating required tables
+mycursor.execute("create table if not exists pystudent(student_name varchar(50) not null,reg_no varchar(50) not null)")
+mycursor.execute("create table if not exists pyfaculty(faculty_name varchar(50) not null,course_name varchar(50) not null)")
+mycursor.execute("create table if not exists pycourse(course_name varchar(50) not null,course_code varchar(50) not null)")
+mydb.commit()
+while(True):
+print("1=enter data for new student")
+print("2=enter data for new faculty")
+print("3=enter data for new courses")
+print("4=search student data")
+print("5=search faculty data")
+print("6=search course data")
+print("7=remove student data")
+print("8=remove faculty data")
+print("9=remove course data")
+print("10=exit")
+ch=int(input("enter your choice:"))
+#procedure for entering a new student record
+if(ch==1):
+print("all information prompted are mandatory to be filled")
+student_name=input("enter name(limit 40 characters):")
+reg_no=str(input("enter reg_no:"))
+mycursor.execute("insert into pystudent values('"+student_name+"','"+reg_no+"')")
+mydb.commit()
+print("student record has been saved successfully!!")
+#procedure for entering a new faculty record
+elif(ch==2):
+faculty_name=str(input("enter name:"))
+course_name=str(input("enter course_name:"))
+mycursor.execute("insert into pyfaculty values('"+faculty_name+"','"+course_name+"')")
+mydb.commit()
+print("faculty record has been saved successfully!!")
+#procedure for entering a new course record
+elif(ch==3):
+course_name=str(input("enter name:"))
+course_code=str(input("enter course_code:"))
+mycursor.execute("insert into pycourse values('"+course_name+"','"+course_code+"')")
+mydb.commit()
+print("course record has been saved successfully!!")
+#procedure for displaying student record
+elif(ch==4):
+reg_no=str(input("enter reg_no:"))
+mycursor.execute("select * from pystudent where reg_no='"+reg_no+"'")
+for i in mycursor:
+student_name,reg_no=i
+print(f'student name :- {student_name}')
+print(f'reg no :- {reg_no}')
+#procedure for displaying faculty record
+elif(ch==5):
+faculty_name=str(input("enter name:"))
+mycursor.execute("select * from pyfaculty where faculty_name='"+faculty_name+"'")
+for i in mycursor:
+faculty_name,course_name=i
+print(f'faculty name :- {faculty_name}')
+print(f'course name :- {course_name}')
+#procedure for displaying course record
+elif(ch==6):
+course_code=str(input("enter course_code:"))
+mycursor.execute("select * from pycourse where course_code='"+course_code+"'")
+for i in mycursor:
+course_name,course_code=i
+print(f'course name :- {course_name}')
+print(f'course code :- {course_code}')
+#procedure for deleting student record
+elif(ch==7):
+reg_no=str(input("enter reg_no:"))
+mycursor.execute("delete from pystudent where reg_no='"+reg_no+"'")
+mydb.commit()
+print("student record is successfully deleted!!")
+#procedure for deleting faculty record
+elif(ch==8):
+faculty_name=str(input("enter name:"))
+mycursor.execute("delete from pyfaculty where faculty_name='"+faculty_name+"'")
+mydb.commit()
+print("faculty record is successfully deleted!!")
+#procedure for deleting course record
+elif(ch==9):
+course_code=str(input("enter course_code:"))
+mycursor.execute("delete from pycourse where course_code='"+course_code+"'")
+mydb.commit()
+print("course record is successfully deleted!!")
+else:
+break
