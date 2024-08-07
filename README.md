@@ -1,7 +1,3 @@
-Sure! Here's a README file for your Academic Management System project:
-
----
-
 # Academic Management System
 
 ## Overview
