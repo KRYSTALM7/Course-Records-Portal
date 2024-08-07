@@ -51,23 +51,6 @@ The Academic Management System is a backend solution designed to efficiently man
     - Search for existing records.
     - Remove records from the database.
 
-## Contributing
-
-1. **Fork the repository**
-2. **Create a new branch**
-    ```bash
-    git checkout -b feature-branch
-    ```
-3. **Commit your changes**
-    ```bash
-    git commit -m "Add some feature"
-    ```
-4. **Push to the branch**
-    ```bash
-    git push origin feature-branch
-    ```
-5. **Create a new Pull Request**
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -76,6 +59,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Special thanks to the contributors and the open-source community for their support and inspiration.
 
----
 
-Feel free to customize the content as per your specific requirements.
